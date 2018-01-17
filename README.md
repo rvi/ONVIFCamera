@@ -22,7 +22,7 @@ pod 'ONVIFCamera'
 
 ## Author
 
-rvi, remy@remyvirin.com
+rvi, remy@virin.us
 
 ## License
 
