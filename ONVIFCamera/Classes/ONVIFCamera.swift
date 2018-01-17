@@ -66,10 +66,12 @@ public class ONVIFCamera {
     var profiles: [Profile]?
     public var state = CameraState.NotConnected
     public var streamURI: String?
+    var soapEngineLicenseKey: String?
     
-    public init(with ipAdress: String, credential: (login: String, password: String)?) {
+    public init(with ipAdress: String, credential: (login: String, password: String)?, soapLicenseKey: String? = nil) {
         self.ipAdress = ipAdress
         self.credential = credential
+        self.soapEngineLicenseKey = soapLicenseKey
     }
     
     public func getCameraInformation(callback: @escaping (ONVIFCamera) -> (), error: @escaping (_ reason: String) -> ()) {
@@ -151,7 +153,7 @@ public class ONVIFCamera {
                                 error:((String) -> ())? = nil) {
     
         let soap = SOAPEngine()
-        
+        soap.licenseKey = soapEngineLicenseKey
         if let  credential = credential {
             soap.authorizationMethod = SOAPAuthorization.AUTH_WSSECURITY
             soap.username = credential.login

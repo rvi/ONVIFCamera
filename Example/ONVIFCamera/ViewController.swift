@@ -11,7 +11,6 @@ import ONVIFCamera
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var ipTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
@@ -65,10 +64,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         if camera.state == .NotConnected {
             if textFieldAreEmpty {
-                camera = ONVIFCamera(with: "60.191.94.122:8086", credential: (login: "admin", password: "admin321"))
+                camera = ONVIFCamera(with: Config.ipAddress.rawValue,
+                                     credential: (login: Config.login.rawValue, password: Config.password.rawValue),
+                                     soapLicenseKey: Config.soapLicenseKey.rawValue)
             } else {
                 camera = ONVIFCamera(with: ipTextField.text!, credential: (login: loginTextField.text!,
-                                                                           password: passwordTextField.text!))
+                                                                           password: passwordTextField.text!),
+                                     soapLicenseKey: Config.soapLicenseKey.rawValue)
             }
             
             camera.getCameraInformation(callback: { (camera) in
@@ -94,7 +96,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         camera = ONVIFCamera(with: ipTextField.text!, credential: (login: loginTextField.text!,
-                                                                   password: passwordTextField.text!))
+                                                                   password: passwordTextField.text!),
+                             soapLicenseKey: Config.soapLicenseKey.rawValue)
         textField.resignFirstResponder()
         return true
     }

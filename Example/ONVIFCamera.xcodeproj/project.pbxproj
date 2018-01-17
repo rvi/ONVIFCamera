@@ -16,6 +16,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		AD84E1BE200F69B400D4785F /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84E1BD200F69B400D4785F /* StreamViewController.swift */; };
 		AD84E1C4200F741D00D4785F /* forVLCCompilation.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD84E1C3200F741D00D4785F /* forVLCCompilation.mm */; };
+		ADDB036A200FD279004D0083 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB0369200FD279004D0083 /* Config.swift */; };
 		D9002F67FD5F1FE265BDFB48 /* Pods_ONVIFCamera_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF851550C169EF5E9BFAB94 /* Pods_ONVIFCamera_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		AD84E1BD200F69B400D4785F /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
 		AD84E1BF200F73DF00D4785F /* ONVIFCamera_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ONVIFCamera_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD84E1C3200F741D00D4785F /* forVLCCompilation.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = forVLCCompilation.mm; sourceTree = "<group>"; };
+		ADDB0369200FD279004D0083 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C40478609C81258C03D93B41 /* Pods_ONVIFCamera_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ONVIFCamera_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E8399FE90470FB3750A422 /* Pods-ONVIFCamera_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ONVIFCamera_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ONVIFCamera_Tests/Pods-ONVIFCamera_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C86266DC7D8C231B6A81E3C3 /* ONVIFCamera.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ONVIFCamera.podspec; path = ../ONVIFCamera.podspec; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				AD84E1BF200F73DF00D4785F /* ONVIFCamera_Example-Bridging-Header.h */,
 				AD84E1C3200F741D00D4785F /* forVLCCompilation.mm */,
+				ADDB0369200FD279004D0083 /* Config.swift */,
 			);
 			name = "Example for ONVIFCamera";
 			path = ONVIFCamera;
@@ -223,10 +226,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 442ERJC2S7;
 						LastSwiftMigration = 0920;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 442ERJC2S7;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -371,6 +376,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				AD84E1C4200F741D00D4785F /* forVLCCompilation.mm in Sources */,
+				ADDB036A200FD279004D0083 /* Config.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				AD84E1BE200F69B400D4785F /* StreamViewController.swift in Sources */,
 			);
@@ -519,10 +525,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 442ERJC2S7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ONVIFCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.onvif.tutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ONVIFCamera/ONVIFCamera_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -537,10 +545,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 442ERJC2S7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ONVIFCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.onvif.tutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ONVIFCamera/ONVIFCamera_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -552,6 +562,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4E8399FE90470FB3750A422 /* Pods-ONVIFCamera_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 442ERJC2S7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -573,6 +584,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8BD1ACE73DBAB5416E945EB9 /* Pods-ONVIFCamera_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 442ERJC2S7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

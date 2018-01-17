@@ -1,6 +1,5 @@
 # ONVIFCamera
 
-[![CI Status](http://img.shields.io/travis/rvi/ONVIFCamera.svg?style=flat)](https://travis-ci.org/rvi/ONVIFCamera)
 [![Version](https://img.shields.io/cocoapods/v/ONVIFCamera.svg?style=flat)](http://cocoapods.org/pods/ONVIFCamera)
 [![License](https://img.shields.io/cocoapods/l/ONVIFCamera.svg?style=flat)](http://cocoapods.org/pods/ONVIFCamera)
 [![Platform](https://img.shields.io/cocoapods/p/ONVIFCamera.svg?style=flat)](http://cocoapods.org/pods/ONVIFCamera)
@@ -22,7 +21,7 @@ pod 'ONVIFCamera'
 
 ## Author
 
-rvi, remy@virin.us
+Rémy Virin, remy@virin.us
 
 ## License
 

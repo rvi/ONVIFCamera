@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="60.191.94.122:8086" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fl0-OY-SLB">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XX.XX.XX.XX:YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fl0-OY-SLB">
                                 <rect key="frame" x="191" y="176" width="149" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aWG-UE-oW5"/>
@@ -30,7 +30,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ILQ-41-AUw"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="admin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="run-ym-w9a">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="run-ym-w9a">
                                 <rect key="frame" x="191" y="210" width="149" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BTt-0N-Mpa"/>
@@ -42,7 +42,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Kx6-fy-O3L"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="admin321" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lRF-VU-c1D">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lRF-VU-c1D">
                                 <rect key="frame" x="191" y="248" width="149" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="pd3-0O-3uz"/>
