@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ONVIFCamera'
   s.version          = '1.0.0'
-  s.summary          = 'this library helps to connect to a ONVIFCamera and view its live stream.'
+  s.summary          = 'This library helps to connect to an ONVIFCamera and view its live stream.'
 
   s.description      = <<-DESC
 This library ease the connection to an ONVIF camera. The methods `getDeviceInformation`, `getProfiles` and
