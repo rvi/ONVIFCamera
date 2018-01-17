@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="StreamTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ONVIFCamera_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,17 +154,32 @@
         <!--Stream View Controller-->
         <scene sceneID="xhV-nn-QuS">
             <objects>
-                <viewController id="mac-x4-UWZ" customClass="StreamViewController" customModule="StreamTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mac-x4-UWZ" customClass="StreamViewController" customModule="ONVIFCamera_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jkj-M7-hLg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tP7-nB-kJI">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tP7-nB-kJI" firstAttribute="leading" secondItem="RGn-mN-Hc5" secondAttribute="leading" id="QW1-Ww-CLV"/>
+                            <constraint firstItem="tP7-nB-kJI" firstAttribute="top" secondItem="RGn-mN-Hc5" secondAttribute="top" id="RpJ-tN-hi3"/>
+                            <constraint firstItem="tP7-nB-kJI" firstAttribute="trailing" secondItem="RGn-mN-Hc5" secondAttribute="trailing" id="dV1-Qp-pvd"/>
+                            <constraint firstItem="tP7-nB-kJI" firstAttribute="bottom" secondItem="RGn-mN-Hc5" secondAttribute="bottom" id="gHC-4e-idj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RGn-mN-Hc5"/>
                     </view>
+                    <connections>
+                        <outlet property="movieView" destination="tP7-nB-kJI" id="dFb-sE-Sr8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScL-ga-W0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="90"/>
+            <point key="canvasLocation" x="1288.8" y="89.505247376311857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bYN-5A-MdT">

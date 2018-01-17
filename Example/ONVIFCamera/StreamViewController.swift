@@ -11,25 +11,16 @@ import UIKit
 class StreamViewController: UIViewController {
     
     var URI: String?
-    var movieView: UIView!
+    @IBOutlet weak var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        movieView = UIView(frame: view.bounds)
-        view.addSubview(movieView)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //let url = URL(string: "http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4")
-        //Playing RTSP from internet
-        // let url = URL(string: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov")
         
         mediaPlayer.drawable = self.movieView
         
