@@ -1,0 +1,19 @@
+PODS:
+  - MobileVLCKit (2.2.2)
+  - ONVIFCamera (0.1.0)
+
+DEPENDENCIES:
+  - MobileVLCKit
+  - ONVIFCamera (from `../`)
+
+EXTERNAL SOURCES:
+  ONVIFCamera:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MobileVLCKit: 75c2c36b0e3478c3f18cac3a2e7fa127cda0ff92
+  ONVIFCamera: ef761a1e23a43dae5d888107c8af99b78028cb6e
+
+PODFILE CHECKSUM: 8aa4a362cfccc82d7ac2db9cbffcf91774f582b5
+
+COCOAPODS: 1.2.1
