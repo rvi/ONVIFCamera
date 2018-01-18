@@ -9,7 +9,11 @@ With this library you are able to get the informations from a camera, the differ
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first, or run `pod try ONVIFCamera` in your terminal.
+
+![Enter informations](https://github.com/rvi/ONVIFCamera/blob/master/images/screenshot.png)
+
+
 
 ## Requirements
 
