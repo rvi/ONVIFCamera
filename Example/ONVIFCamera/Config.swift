@@ -6,10 +6,9 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-enum Config: String {
-    case soapLicenseKey = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
-    
-    case ipAddress = "IP_ADDRESS:PORT"
-    case login = "login"
-    case password = "password"
+struct Config {
+    static let soapLicenseKey = "XXXXXXXXXX"
+    static let ipAddress = "IP_ADDRESS:PORT"
+    static let login = "login"
+    static let password = "password"
 }

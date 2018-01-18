@@ -10,6 +10,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+To use this project on an i
+
 ## Installation
 
 ONVIFCamera is available through [CocoaPods](http://cocoapods.org). To install
