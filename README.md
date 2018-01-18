@@ -4,13 +4,17 @@
 [![License](https://img.shields.io/cocoapods/l/ONVIFCamera.svg?style=flat)](http://cocoapods.org/pods/ONVIFCamera)
 [![Platform](https://img.shields.io/cocoapods/p/ONVIFCamera.svg?style=flat)](http://cocoapods.org/pods/ONVIFCamera)
 
+This library have been developped to ease the connection of an iOS device to an ONVIF Camera.
+With this library you are able to get the informations from a camera, the different media profiles available and retrieve the stream URI to play it.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 
-To use this project on an i
+To use this project on an iOS device (real device, not a simulator) you need a `SOAPEngine` licence key.
+To get one, ask us during the hackaton.
 
 ## Installation
 
