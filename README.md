@@ -7,12 +7,11 @@
 This library have been developped to ease the connection of an iOS device to an ONVIF Camera.
 With this library you are able to get the informations from a camera, the different media profiles available and retrieve the stream URI to play it.
 
+![Screenshot](https://github.com/rvi/ONVIFCamera/blob/master/images/screenshot.png)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first, or run `pod try ONVIFCamera` in your terminal.
-
-![Enter informations](https://github.com/rvi/ONVIFCamera/blob/master/images/screenshot.png)
-
 
 
 ## Requirements
