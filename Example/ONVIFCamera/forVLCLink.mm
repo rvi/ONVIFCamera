@@ -6,4 +6,4 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Needed to prevent link error from VLC 

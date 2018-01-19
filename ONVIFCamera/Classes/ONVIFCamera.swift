@@ -8,11 +8,17 @@
 
 import Foundation
 
+/**
+ * This enum contains all the ONVIF requests implemented in this library.
+ * It allows us to retrieve information on the camera (Manufacturer, Model, serial number)
+ * We can also retrieve the different media profiles and a stream URI associated to a media profile.
+ */
 enum CameraRequest {
     case getDeviceInformation
     case getProfiles
     case getStreamURI(params: [String: String])
     
+    /// The soap action for the corresponding route
     var soapAction: String {
         switch self {
         case .getDeviceInformation:
@@ -24,6 +30,9 @@ enum CameraRequest {
         }
     }
     
+    /** Indicate if we should retrieve the attributes inside the xml element, for instance it's needed
+     in `getProfiles` to retrieve the token: `<trt:Profiles token="MediaProfile000" fixed="true">`
+     */
     var retrieveAttributes: Bool {
         switch self {
         case .getProfiles:
@@ -33,6 +42,7 @@ enum CameraRequest {
         }
     }
     
+    /// Needed in `getStreamURI` to pass the profile token and the protocol
     var params: [String: String]? {
         switch self {
         case .getStreamURI(let params):
@@ -43,8 +53,20 @@ enum CameraRequest {
     }
 }
 
+/** Main class of the pod, it alprofileslows us to connect to an ONVIF camera, retrieve informations, its media profiles and
+ the stream URI.
+ */
 public class ONVIFCamera {
     
+    /**
+     The state of the camera. The camera can be in these states, it helps us to keep track up to which state we have been.
+     * `NotConnected`: The camera have been instantiate, but we never try to connect to it yet.
+     * `Connected`: we have been able to connect and get informations from the camera, in other terms, the IP address,
+     the login and password are valid.
+     * `HasProfiles`: We retrieved the media profiles.
+     * `ReadyToPlay`: We retrieved an URI to view the live stream.
+     * `No Profiles`: In case the camera returns 0 profile.
+     */
     public enum CameraState {
         case NotConnected
         case Connected
@@ -53,19 +75,34 @@ public class ONVIFCamera {
         case NoProfiles
     }
     
+    /// A profile is made of its name and token. The token should be passed to the `getStreamURI` method.
     public struct Profile {
         public let name: String
         public let token: String
     }
     
+    /// The IP address of the camera, passed on the init.
     let ipAdress: String
+    /// The credential passed on the init if needed.
     let credential: (login: String, password: String)?
+    
+    /// The manufacturer of the camera
     public var manufacturer: String? = nil
+    /// The model of the camera
     public var model: String? = nil
+    /// The serial number of the camera
     var serialNumber: String? = nil
+    
+    /// The media profiles retrieved from the camera
     var profiles: [Profile]?
+    
+    /// The current state of the camera
     public var state = CameraState.NotConnected
+    
+    /// The streamURI with login/password append to it.
     public var streamURI: String?
+    
+    /// The SOAPEngine license key
     var soapEngineLicenseKey: String?
     
     public init(with ipAdress: String, credential: (login: String, password: String)?, soapLicenseKey: String? = nil) {
@@ -74,6 +111,7 @@ public class ONVIFCamera {
         self.soapEngineLicenseKey = soapLicenseKey
     }
     
+    /// Test camera connection and retrieve informations
     public func getCameraInformation(callback: @escaping (ONVIFCamera) -> (), error: @escaping (_ reason: String) -> ()) {
         performRequest(request: CameraRequest.getDeviceInformation, response: { (result) in
             guard let body = result["Body"] as? [String: Any],
@@ -90,6 +128,8 @@ public class ONVIFCamera {
         }, error: error)
     }
     
+    
+    /// Retrieve the media profiles of the camera
     public func getProfiles(profiles: @escaping ([Profile]) -> ()) {
         performRequest(request: CameraRequest.getProfiles, response: { (result) in
             guard let body = result["Body"] as? [String: Any],
@@ -124,6 +164,7 @@ public class ONVIFCamera {
         })
     }
     
+    /// Retrieve the stream URI for the given profile token
     public func getStreamURI(with token: String, uri: @escaping (String) -> ()) {
         let params = ["Protocol": "RTSP", "ProfileToken": token]
         
@@ -138,6 +179,8 @@ public class ONVIFCamera {
         })
     }
     
+    
+    /// Util method to append the credential to the stream URI
     private func appendCredentialsToStreamURI(uri: String) -> String {
         guard let credential = credential else { return uri }
         
@@ -148,7 +191,7 @@ public class ONVIFCamera {
         return String(beginningOfUri) + credential.login + ":" + credential.password + "@" + endOfUri
     }
     
-
+    /// Private method to perform a SOAP request
     private func performRequest(request: CameraRequest, response: @escaping ([String: Any]) -> (),
                                 error:((String) -> ())? = nil) {
     

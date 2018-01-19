@@ -9,15 +9,21 @@
 import UIKit
 import ONVIFCamera
 
+/**
+ This view controller allows the user to enter the IP address, login and password of his ONVIF camera.
+ Then it tests the connection by sending a `getInformations` request.
+ Finally it retrieve the media profiles and the stream URI.
+ */
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    // UI elements
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var ipTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var playButton: UIButton!
-    
+    // The Onvif camera from the pod
     var camera: ONVIFCamera = ONVIFCamera(with: "XX", credential: nil) {
         didSet {
             playButton.setTitle("Connect to camera", for: .normal)
@@ -30,17 +36,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         infoLabel.text = "No 🎥 connected"
     }
     
-    // "No camera connected"
-    
     func cameraIsConnected() {
         playButton.setTitle("Getting profiles...", for: .normal)
         let info = "Connected to: \n" + camera.manufacturer! + "\n" + camera.model!
         infoLabel.text = info
-        
         updateProfiles()
     }
     
-    
+    /// Once the camera credential and IP are valid, we retrieve the profiles and the streamURI
     func updateProfiles() {
         if camera.state == .Connected {
             camera.getProfiles(profiles: { (profiles) -> () in
@@ -48,6 +51,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.playButton.setTitle(title, for: .normal)
                 
                 if profiles.count > 0 {
+                    // Retrieve the streamURI with the latest profile
                     self.camera.getStreamURI(with: profiles.last!.token, uri: { (uri) in
                         print("URI: \(uri)")
                         self.playButton.setTitle("Play 🎥", for: .normal)
@@ -60,6 +64,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //********************************************************************************
     //MARK: - Actions
     
+    /** The `play` handle several actions depending on the camera state:
+     * camera `NotConnected`: Create an instance of `ONVIFCamera` with the IP address and credentials typed by the user,
+     or with the ones from the `Config` struct if all the textfields are empty. Then we call `getInformations` on the camera.
+     * camera `ReadyToPlay`: We open a new view controller, `StreamViewController` with the stream URI to play.
+     */
     @IBAction func playButtonTapped(_ sender: Any) {
         
         if camera.state == .NotConnected {
@@ -85,6 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    /// Util method to check if all the textfields are empty
     private var textFieldAreEmpty: Bool {
         return ipTextField.text!.count == 0 &&
             loginTextField.text!.count == 0 &&
@@ -111,6 +121,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    //********************************************************************************
+    //MARK: - Navigation
+    /// Pass the URI if the next view controller if `StreamViewController`
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let uri = sender as? String, let controller = segue.destination as? StreamViewController {
             controller.URI = uri

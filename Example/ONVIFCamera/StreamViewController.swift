@@ -8,22 +8,23 @@
 
 import UIKit
 
+/**
+ This controller plays the live stream through VLC of the URI passed by the previous view controller.
+ */
 class StreamViewController: UIViewController {
     
     var URI: String?
     @IBOutlet weak var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Associate the movieView to the VLC media player
         mediaPlayer.drawable = self.movieView
         
+        // Create `VLCMedia` with the URI retrieved from the camera
         if let URI = URI {
             let url = URL(string: URI)
             let media = VLCMedia(url: url)
@@ -37,22 +38,4 @@ class StreamViewController: UIViewController {
         super.viewWillDisappear(animated)
         mediaPlayer.stop()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
-
