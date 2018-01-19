@@ -11,9 +11,9 @@ struct Config {
     /// SOAPEngine license key
     static let soapLicenseKey = "XXXXXXXXXX"
     /// The camera IP address
-    static let ipAddress = "IP_ADDRESS:PORT"
+    static let ipAddress = "60.191.94.122:8086"
     /// The login of the camera
-    static let login = "login"
+    static let login = "admin"
     /// The password of the camera
-    static let password = "password"
+    static let password = "admin321"
 }
