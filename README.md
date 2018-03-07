@@ -5,8 +5,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/ONVIFCamera.svg?style=flat)](http://cocoapods.org/pods/ONVIFCamera)
 
 This library have been developped to ease the connection of an iOS device to an ONVIF Camera.
-With this library you are able to get the informations from a camera, the different media profiles available and retrieve the stream URI to play it.
-I wrote an article explaining how to use this code and how to create an ONVIF app, you can read it [here, on Hackernoon](https://hackernoon.com/live-stream-an-onvif-camera-on-your-ios-app-57fe9cead5a5).
+With this library you are able to get the informations from a camera, the different media profiles available and retrieve the stream URI to play it.\\I wrote an article explaining how to use this code and how to create an ONVIF app, you can read it [here, on Hackernoon](https://hackernoon.com/live-stream-an-onvif-camera-on-your-ios-app-57fe9cead5a5).
 
 ![Screenshot](https://github.com/rvi/ONVIFCamera/blob/master/images/screenshot.png)
 
