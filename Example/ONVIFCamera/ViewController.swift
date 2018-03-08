@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 if profiles.count > 0 {
                     // Retrieve the streamURI with the latest profile
-                    self.camera.getStreamURI(with: profiles.last!.token, uri: { (uri) in
+                    self.camera.getStreamURI(with: profiles.first!.token, uri: { (uri) in
                         print("URI: \(uri)")
                         self.playButton.setTitle("Play 🎥", for: .normal)
                     })
@@ -89,6 +89,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let text = NSAttributedString(string: reason, attributes: [NSAttributedStringKey.foregroundColor : UIColor.red])
                 self.infoLabel.attributedText = text
             })
+ 
+            //camera.getServices()
+            
         } else if camera.state == .ReadyToPlay {
             performSegue(withIdentifier: "showStreamVC", sender: camera.streamURI)
         }

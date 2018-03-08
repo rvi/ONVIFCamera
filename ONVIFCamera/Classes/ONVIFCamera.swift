@@ -17,6 +17,7 @@ enum CameraRequest {
     case getDeviceInformation
     case getProfiles
     case getStreamURI(params: [String: String])
+    case getServices
     
     /// The soap action for the corresponding route
     var soapAction: String {
@@ -27,6 +28,8 @@ enum CameraRequest {
             return "http://www.onvif.org/ver20/media/wsdl/GetProfiles"
         case .getStreamURI:
             return "http://www.onvif.org/ver20/media/wsdl/GetStreamUri"
+        case .getServices:
+            return "http://www.onvif.org/ver10/device/wsdl/GetServices"
         }
     }
     
@@ -164,7 +167,14 @@ public class ONVIFCamera {
         })
     }
     
-    /// Retrieve the stream URI for the given profile token
+    /// Retrieve the services provides by the camera
+    public func getServices() {
+        performRequest(request: CameraRequest.getServices, response: { (result) in
+            print(result)
+        })
+    }
+    
+    
     public func getStreamURI(with token: String, uri: @escaping (String) -> ()) {
         let params = ["Protocol": "RTSP", "ProfileToken": token]
         
@@ -197,8 +207,10 @@ public class ONVIFCamera {
     
         let soap = SOAPEngine()
         soap.licenseKey = soapEngineLicenseKey
+        soap.version = SOAPVersion.VERSION_1_2
+        soap.authorizationMethod = SOAPAuthorization.AUTH_WSSECURITY
+        
         if let  credential = credential {
-            soap.authorizationMethod = SOAPAuthorization.AUTH_WSSECURITY
             soap.username = credential.login
             soap.password = credential.password
         }
@@ -210,7 +222,7 @@ public class ONVIFCamera {
         }
         soap.requestURL("http://" + ipAdress + "/onvif/device_service",
                         soapAction: request.soapAction,
-                        completeWithDictionary: { (statusCode : Int,
+                          completeWithDictionary: { (statusCode : Int,
                             dict : [AnyHashable : Any]?) -> Void in
                             
                             if statusCode != 200, let error = error,
@@ -221,6 +233,8 @@ public class ONVIFCamera {
                             let reason = reasonDict["Text"] as? String {
                                 error(reason)
                             } else if statusCode != 200 {
+                                print("Can't connect to the camera for an unknow reason. Status code: \(statusCode)")
+                                print("response: " + String(describing: dict))
                                 error?("Can't connect to the camera for an unknow reason. Status code: \(statusCode)")
                             } else if let dict = dict as? [String : Any] {
                                 response(dict)
@@ -231,5 +245,6 @@ public class ONVIFCamera {
         }) { (error : Error?) -> Void in
             print(error ?? "")
         }
+        print("SOAP REQUEST: \(soap.soapActionRequest)")
     }
 }
