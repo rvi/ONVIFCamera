@@ -17,7 +17,6 @@ enum CameraRequest {
     case getDeviceInformation
     case getProfiles
     case getStreamURI(params: [String: String])
-    case getServices
     
     /// The soap action for the corresponding route
     var soapAction: String {
@@ -28,8 +27,6 @@ enum CameraRequest {
             return "http://www.onvif.org/ver20/media/wsdl/GetProfiles"
         case .getStreamURI:
             return "http://www.onvif.org/ver20/media/wsdl/GetStreamUri"
-        case .getServices:
-            return "http://www.onvif.org/ver10/device/wsdl/GetServices"
         }
     }
     
@@ -166,14 +163,6 @@ public class ONVIFCamera {
             profiles(parsedProfiles)
         })
     }
-    
-    /// Retrieve the services provides by the camera
-    public func getServices() {
-        performRequest(request: CameraRequest.getServices, response: { (result) in
-            print(result)
-        })
-    }
-    
     
     public func getStreamURI(with token: String, uri: @escaping (String) -> ()) {
         let params = ["Protocol": "RTSP", "ProfileToken": token]
