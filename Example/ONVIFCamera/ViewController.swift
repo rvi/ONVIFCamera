@@ -90,7 +90,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.infoLabel.attributedText = text
             })
  
-            //camera.getServices()
+            camera.getServices()
             
         } else if camera.state == .ReadyToPlay {
             performSegue(withIdentifier: "showStreamVC", sender: camera.streamURI)

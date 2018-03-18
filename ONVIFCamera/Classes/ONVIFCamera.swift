@@ -23,13 +23,22 @@ enum CameraRequest {
     var soapAction: String {
         switch self {
         case .getDeviceInformation:
-            return "http://www.onvif.org/ver10/device/wsdl/GetDeviceInformation"
+            return namespace + "/GetDeviceInformation"
         case .getProfiles:
-            return "http://www.onvif.org/ver20/media/wsdl/GetProfiles"
+            return namespace + "/GetProfiles"
         case .getStreamURI:
-            return "http://www.onvif.org/ver20/media/wsdl/GetStreamUri"
+            return namespace + "/GetStreamUri"
         case .getServices:
-            return "http://www.onvif.org/ver10/device/wsdl/GetServices"
+            return namespace + "/GetServices"
+        }
+    }
+    
+    var namespace: String {
+        switch self {
+        case .getDeviceInformation, .getServices:
+            return "http://www.onvif.org/ver10/device/wsdl"
+        case .getProfiles, .getStreamURI:
+            return "http://www.onvif.org/ver20/media/wsdl"
         }
     }
     
@@ -105,6 +114,16 @@ public class ONVIFCamera {
     /// The streamURI with login/password append to it.
     public var streamURI: String?
     
+    /// Paths for the services we call on the camera, will be updated with getServices response
+    private struct Paths {
+        var getDeviceInformation = "/onvif/device_service"
+        var getProfiles = "/onvif/device_service"
+        var getStreamURI = "/onvif/device_service"
+        
+    }
+    
+    private var paths = Paths()
+    
     /// The SOAPEngine license key
     var soapEngineLicenseKey: String?
     
@@ -170,7 +189,22 @@ public class ONVIFCamera {
     /// Retrieve the services provides by the camera
     public func getServices() {
         performRequest(request: CameraRequest.getServices, response: { (result) in
-            print(result)
+            guard let body = result["Body"] as? [String: Any],
+                let response = body["GetServicesResponse"]  as? [String: Any],
+            let services = response["Service"] as? [[String: Any]] else { return }
+            
+            services.forEach({ (service) in
+                guard let namespace = service["Namespace"] as? String,
+                let addr = service["XAddr"] as? String,
+                let address = URL(string: addr) else { return }
+                
+                if namespace == CameraRequest.getDeviceInformation.namespace {
+                    self.paths.getDeviceInformation = address.path
+                } else if namespace == CameraRequest.getProfiles.namespace {
+                    self.paths.getProfiles = address.path
+                    self.paths.getStreamURI = address.path
+                }
+            })
         })
     }
     
