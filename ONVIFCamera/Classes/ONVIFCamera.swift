@@ -59,6 +59,8 @@ enum CameraRequest {
         switch self {
         case .getStreamURI(let params):
             return params
+        case .getServices:
+            return ["IncludeCapability": "false"]
         default:
             return nil
         }
@@ -94,7 +96,15 @@ public class ONVIFCamera {
     }
     
     /// The IP address of the camera, passed on the init.
-    let ipAdress: String
+    let ipAddress: String
+    
+    var iPAddressWithoutPort: String {
+        get {
+            guard let index = ipAddress.index(of: ":") else { return ipAddress }
+            return String(ipAddress[..<index])
+        }
+    }
+    
     /// The credential passed on the init if needed.
     let credential: (login: String, password: String)?
     
@@ -128,7 +138,7 @@ public class ONVIFCamera {
     var soapEngineLicenseKey: String?
     
     public init(with ipAdress: String, credential: (login: String, password: String)?, soapLicenseKey: String? = nil) {
-        self.ipAdress = ipAdress
+        self.ipAddress = ipAdress
         self.credential = credential
         self.soapEngineLicenseKey = soapLicenseKey
     }
@@ -187,7 +197,7 @@ public class ONVIFCamera {
     }
     
     /// Retrieve the services provides by the camera
-    public func getServices() {
+    public func getServices(callback: @escaping () -> ()) {
         performRequest(request: CameraRequest.getServices, response: { (result) in
             guard let body = result["Body"] as? [String: Any],
                 let response = body["GetServicesResponse"]  as? [String: Any],
@@ -205,6 +215,8 @@ public class ONVIFCamera {
                     self.paths.getStreamURI = address.path
                 }
             })
+            
+            callback()
         })
     }
     
@@ -228,11 +240,23 @@ public class ONVIFCamera {
     private func appendCredentialsToStreamURI(uri: String) -> String {
         guard let credential = credential else { return uri }
         
-        let index = uri.index(uri.startIndex, offsetBy: "rtsp://".count)
-        let endOfUri = uri[index...]
-        let beginningOfUri = uri[..<index]
+        // Retrieve the path and arguments of the uri
+        // ex: /onvif/cam/monitor?channel=1&audio=1
+        guard let url = URL(string: uri),
+        let range = uri.range(of: url.path) else { return uri }
         
-        return String(beginningOfUri) + credential.login + ":" + credential.password + "@" + endOfUri
+        var ipAddressWithPort = iPAddressWithoutPort
+        
+        // Add the port given in argument (uri)
+        if let port = url.port {
+            ipAddressWithPort += ":" + String(port)
+        }
+        
+        let pathAndArgs = uri[range.lowerBound...]
+        
+        // Return the right uri with credentials, the correct IP address (in case of a firewall),
+        // the correct rtsp port and the paths and args or uri
+        return "rtsp://" + credential.login + ":" + credential.password + "@" + ipAddressWithPort + pathAndArgs
     }
     
     /// Private method to perform a SOAP request
@@ -254,7 +278,7 @@ public class ONVIFCamera {
         if let params = request.params {
             soap.setValuesForKeys(params)
         }
-        soap.requestURL("http://" + ipAdress + "/onvif/device_service",
+        soap.requestURL("http://" + ipAddress + pathFor(request: request),
                         soapAction: request.soapAction,
                           completeWithDictionary: { (statusCode : Int,
                             dict : [AnyHashable : Any]?) -> Void in
@@ -280,5 +304,17 @@ public class ONVIFCamera {
             print(error ?? "")
         }
         print("SOAP REQUEST: \(soap.soapActionRequest)")
+    }
+    
+    /// returns the correct path depending on the service we're calling
+    private func pathFor(request: CameraRequest) -> String {
+        switch request {
+        case .getProfiles:
+            return paths.getProfiles
+        case .getStreamURI:
+            return paths.getStreamURI
+        default:
+            return paths.getDeviceInformation
+        }
     }
 }

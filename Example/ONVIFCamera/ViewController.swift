@@ -43,8 +43,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateProfiles()
     }
     
+    private func getDeviceInformation() {
+        camera.getCameraInformation(callback: { (camera) in
+            self.cameraIsConnected()
+        }, error: { (reason) in
+            
+            let text = NSAttributedString(string: reason, attributes: [NSAttributedStringKey.foregroundColor : UIColor.red])
+            self.infoLabel.attributedText = text
+        })
+    }
+    
     /// Once the camera credential and IP are valid, we retrieve the profiles and the streamURI
-    func updateProfiles() {
+    private func updateProfiles() {
         if camera.state == .Connected {
             camera.getProfiles(profiles: { (profiles) -> () in
                 let title = self.camera.state == .HasProfiles ? "Getting streaming URI..." : "No Profiles... 😢"
@@ -81,16 +91,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                                                            password: passwordTextField.text!),
                                      soapLicenseKey: Config.soapLicenseKey)
             }
-            
-            camera.getCameraInformation(callback: { (camera) in
-                self.cameraIsConnected()
-            }, error: { (reason) in
-                
-                let text = NSAttributedString(string: reason, attributes: [NSAttributedStringKey.foregroundColor : UIColor.red])
-                self.infoLabel.attributedText = text
-            })
- 
-            camera.getServices()
+          
+            camera.getServices {
+                self.getDeviceInformation()
+            }
             
         } else if camera.state == .ReadyToPlay {
             performSegue(withIdentifier: "showStreamVC", sender: camera.streamURI)
