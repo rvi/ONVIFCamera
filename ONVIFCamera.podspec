@@ -24,6 +24,7 @@ and a licence is required to be used on an iPhone device (not on the simulator).
   s.social_media_url = 'https://twitter.com/remyvirin'
   s.screenshot  = 'https://github.com/rvi/ONVIFCamera/blob/master/images/screenshot.png?raw=true'
   s.ios.deployment_target = '9.3'
+  s.tvos.deployment_target = '9.3'
 
   s.source_files = 'ONVIFCamera/Classes/**/*', 'ONVIFCamera/SOAPEngine/SOAPEngine64.framework/Headers/*.h'
 
