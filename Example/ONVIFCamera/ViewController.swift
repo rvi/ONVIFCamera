@@ -91,9 +91,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                                                            password: passwordTextField.text!),
                                      soapLicenseKey: Config.soapLicenseKey)
             }
-          
-            camera.getServices {
-                self.getDeviceInformation()
+                      
+            camera.getServices { (error) in
+                
+                if error == nil {
+                    self.getDeviceInformation()
+                }
             }
             
         } else if camera.state == .ReadyToPlay {

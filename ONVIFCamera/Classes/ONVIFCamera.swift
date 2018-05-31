@@ -131,6 +131,16 @@ public class ONVIFCamera {
     var getStreamURI = "/onvif/device_service"
   }
 
+  public enum APIError: Error {
+        case serviceError(error: String)
+        
+        var localizedDescription: String {
+            switch self {
+            case .serviceError(let error):
+                return error
+            }
+        }
+    }
   private var paths = Paths()
 
   private var realm: String?
@@ -148,7 +158,10 @@ public class ONVIFCamera {
   public func getCameraInformation(callback: @escaping (ONVIFCamera) -> (), error: @escaping (_ reason: String) -> ()) {
     performRequest(request: CameraRequest.getDeviceInformation, response: { (result) in
       guard let body = result["Body"] as? [String: Any],
-        let response = body["GetDeviceInformationResponse"]  as? [String: Any] else { return }
+        let response = body["GetDeviceInformationResponse"]  as? [String: Any] else {
+            callback(self)
+            return
+        }
       print("Camera information:")
       print(response)
 
@@ -167,7 +180,10 @@ public class ONVIFCamera {
     performRequest(request: CameraRequest.getProfiles, response: { (result) in
       guard let body = result["Body"] as? [String: Any],
         let response = body["GetProfilesResponse"]  as? [String: Any],
-        let profilesDict = response["Profiles"] as? [[String: Any]] else { return }
+        let profilesDict = response["Profiles"] as? [[String: Any]] else {
+            profiles([])
+            return
+        }
       print("Profiles:")
       print(profilesDict)
 
@@ -198,16 +214,23 @@ public class ONVIFCamera {
   }
 
   /// Retrieve the services provides by the camera
-  public func getServices(callback: @escaping () -> ()) {
+    public func getServices(callback: @escaping (_ error: APIError?) -> ()) {
     performRequest(request: CameraRequest.getServices, response: { (result) in
       guard let body = result["Body"] as? [String: Any],
         let response = body["GetServicesResponse"]  as? [String: Any],
-        let services = response["Service"] as? [[String: Any]] else { return }
+        let services = response["Service"] as? [[String: Any]] else {
+            callback(APIError.serviceError(error: "Response is nil or invalid format for \(CameraRequest.getServices)"))
+            return
+        }
 
       services.forEach({ (service) in
         guard let namespace = service["Namespace"] as? String,
           let addr = service["XAddr"] as? String,
-          let address = URL(string: addr) else { return }
+          let address = URL(string: addr) else {
+            callback(APIError.serviceError(error: "Service address or URL is not valid"))
+            return
+        
+        }
 
         if namespace == CameraRequest.getDeviceInformation.namespace {
           self.paths.getDeviceInformation = address.path
@@ -217,7 +240,7 @@ public class ONVIFCamera {
         }
       })
 
-      callback()
+      callback(nil)
     })
   }
 
@@ -228,7 +251,10 @@ public class ONVIFCamera {
     performRequest(request: CameraRequest.getStreamURI(params: params), response: { (result) in
       guard let body = result["Body"] as? [String: Any],
         let response = body["GetStreamUriResponse"]  as? [String: Any],
-        let uriReceived = response["Uri"] as? String else { return }
+        let uriReceived = response["Uri"] as? String else {
+            uri("")
+            return
+        }
 
       self.streamURI = self.appendCredentialsToStreamURI(uri: uriReceived)
       self.state = .ReadyToPlay
