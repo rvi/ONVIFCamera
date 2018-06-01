@@ -176,12 +176,12 @@ public class ONVIFCamera {
 
 
   /// Retrieve the media profiles of the camera
-  public func getProfiles(profiles: @escaping ([Profile]) -> ()) {
+  public func getProfiles(profiles: @escaping ([Profile]?) -> ()) {
     performRequest(request: CameraRequest.getProfiles, response: { (result) in
       guard let body = result["Body"] as? [String: Any],
         let response = body["GetProfilesResponse"]  as? [String: Any],
         let profilesDict = response["Profiles"] as? [[String: Any]] else {
-            profiles([])
+            profiles(nil)
             return
         }
       print("Profiles:")
@@ -245,14 +245,14 @@ public class ONVIFCamera {
   }
 
 
-  public func getStreamURI(with token: String, uri: @escaping (String) -> ()) {
+  public func getStreamURI(with token: String, uri: @escaping (String?) -> ()) {
     let params = ["Protocol": "RTSP", "ProfileToken": token]
 
     performRequest(request: CameraRequest.getStreamURI(params: params), response: { (result) in
       guard let body = result["Body"] as? [String: Any],
         let response = body["GetStreamUriResponse"]  as? [String: Any],
         let uriReceived = response["Uri"] as? String else {
-            uri("")
+            uri(nil)
             return
         }
 

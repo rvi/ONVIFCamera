@@ -60,11 +60,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let title = self.camera.state == .HasProfiles ? "Getting streaming URI..." : "No Profiles... 😢"
                 self.playButton.setTitle(title, for: .normal)
                 
-                if profiles.count > 0 {
+                if let pr0files = profiles, pr0files.count > 0 {
                     // Retrieve the streamURI with the latest profile
-                    self.camera.getStreamURI(with: profiles.first!.token, uri: { (uri) in
-                        print("URI: \(uri)")
+                    self.camera.getStreamURI(with: pr0files.first!.token, uri: { (uri) in
+                        
+                        print("URI: \(uri ?? "No URI Provided")")
+                        
+                        if let _ = uri {
                         self.playButton.setTitle("Play 🎥", for: .normal)
+                        }
                     })
                 }
             })
