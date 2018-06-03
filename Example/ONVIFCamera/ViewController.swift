@@ -60,11 +60,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let title = self.camera.state == .HasProfiles ? "Getting streaming URI..." : "No Profiles... 😢"
                 self.playButton.setTitle(title, for: .normal)
                 
-                if profiles.count > 0 {
+                if let profiles = profiles, profiles.count > 0 {
                     // Retrieve the streamURI with the latest profile
                     self.camera.getStreamURI(with: profiles.first!.token, uri: { (uri) in
-                        print("URI: \(uri)")
+                        
+                        print("URI: \(uri ?? "No URI Provided")")
+                        
+                        if uri != nil {
                         self.playButton.setTitle("Play 🎥", for: .normal)
+                        }
                     })
                 }
             })
@@ -91,9 +95,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                                                            password: passwordTextField.text!),
                                      soapLicenseKey: Config.soapLicenseKey)
             }
-          
-            camera.getServices {
-                self.getDeviceInformation()
+                      
+            camera.getServices { (error) in
+                
+                if error == nil {
+                    self.getDeviceInformation()
+                }
             }
             
         } else if camera.state == .ReadyToPlay {
