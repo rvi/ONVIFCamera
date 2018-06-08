@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'ONVIFCameraTVOS'
-    s.version          = '1.1.7'
+    s.version          = '2.0.0'
     s.summary          = 'This library helps to connect to an ONVIFCamera and view its live stream.'
 
     s.description      = <<-DESC

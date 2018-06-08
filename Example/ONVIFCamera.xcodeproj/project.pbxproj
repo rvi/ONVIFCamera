@@ -19,6 +19,8 @@
 		AD84E1C4200F741D00D4785F /* forVLCLink.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD84E1C3200F741D00D4785F /* forVLCLink.mm */; };
 		ADDB036A200FD279004D0083 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB0369200FD279004D0083 /* Config.swift */; };
 		D9002F67FD5F1FE265BDFB48 /* Pods_ONVIFCamera_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF851550C169EF5E9BFAB94 /* Pods_ONVIFCamera_Tests.framework */; };
+		EB695C2F20CA8D7E004817B8 /* UIView+AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB695C2E20CA8D7E004817B8 /* UIView+AlertExtension.swift */; };
+		EB695C3020CA8D7E004817B8 /* UIView+AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB695C2E20CA8D7E004817B8 /* UIView+AlertExtension.swift */; };
 		EB94442320C923CD009B24B5 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84E1BD200F69B400D4785F /* StreamViewController.swift */; };
 		EB94442420C92419009B24B5 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB0369200FD279004D0083 /* Config.swift */; };
 		EBAEE72320C8499B00876A10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAEE72220C8499B00876A10 /* AppDelegate.swift */; };
@@ -77,6 +79,7 @@
 		C4E8399FE90470FB3750A422 /* Pods-ONVIFCamera_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ONVIFCamera_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ONVIFCamera_Tests/Pods-ONVIFCamera_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C86266DC7D8C231B6A81E3C3 /* ONVIFCamera.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ONVIFCamera.podspec; path = ../ONVIFCamera.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C97A55F13607BB34A40FCC3E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		EB695C2E20CA8D7E004817B8 /* UIView+AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AlertExtension.swift"; sourceTree = "<group>"; };
 		EB94441E20C9237A009B24B5 /* ONVICamera_TVOS_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ONVICamera_TVOS_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		EBAEE6FF20C8495900876A10 /* tvos.tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvos.tutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBAEE70F20C8495B00876A10 /* tvos.tutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvos.tutorialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,12 +174,13 @@
 				607FACD71AFB9204008FA782 /* FormViewController.swift */,
 				AD84E1BD200F69B400D4785F /* StreamViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				607FACD31AFB9204008FA782 /* Supporting Files */,
 				AD84E1BF200F73DF00D4785F /* ONVIFCamera_Example-Bridging-Header.h */,
 				AD84E1C3200F741D00D4785F /* forVLCLink.mm */,
 				ADDB0369200FD279004D0083 /* Config.swift */,
+				EB695C2E20CA8D7E004817B8 /* UIView+AlertExtension.swift */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for ONVIFCamera";
 			path = ONVIFCamera;
@@ -372,7 +376,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -583,6 +587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* FormViewController.swift in Sources */,
+				EB695C2F20CA8D7E004817B8 /* UIView+AlertExtension.swift in Sources */,
 				AD84E1C4200F741D00D4785F /* forVLCLink.mm in Sources */,
 				ADDB036A200FD279004D0083 /* Config.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -619,6 +624,7 @@
 				EB94442320C923CD009B24B5 /* StreamViewController.swift in Sources */,
 				EBAEE73D20C8F85D00876A10 /* FormViewController.swift in Sources */,
 				EB94442420C92419009B24B5 /* Config.swift in Sources */,
+				EB695C3020CA8D7E004817B8 /* UIView+AlertExtension.swift in Sources */,
 				EBAEE72320C8499B00876A10 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,12 +696,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -743,12 +751,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -939,7 +949,7 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tvos.tutorial.app/tvos.tutorial";
-				TVOS_DEPLOYMENT_TARGET = 12.0;
+				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
 			name = Debug;
 		};
@@ -966,7 +976,7 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tvos.tutorial.app/tvos.tutorial";
-				TVOS_DEPLOYMENT_TARGET = 12.0;
+				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
 			name = Release;
 		};
@@ -1061,7 +1071,7 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ONVICamera_TVOS_Example.app/ONVICamera_TVOS_Example";
-				TVOS_DEPLOYMENT_TARGET = 12.0;
+				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
 			name = Debug;
 		};
@@ -1089,7 +1099,7 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ONVICamera_TVOS_Example.app/ONVICamera_TVOS_Example";
-				TVOS_DEPLOYMENT_TARGET = 12.0;
+				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
 			name = Release;
 		};

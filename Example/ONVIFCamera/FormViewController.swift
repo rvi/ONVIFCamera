@@ -95,11 +95,12 @@ class FormViewController: UIViewController, UITextFieldDelegate {
                                                                            password: passwordTextField.text!),
                                      soapLicenseKey: Config.soapLicenseKey)
             }
-                      
             camera.getServices { (error) in
                 
                 if error == nil {
                     self.getDeviceInformation()
+                } else {
+                    self.presentError(with: error?.localizedDescription ?? "Unknown error has occured")
                 }
             }
             
