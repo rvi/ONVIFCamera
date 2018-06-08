@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import ONVIFCamera
+import ONVIFCameraTVOS
 
 /**
  This view controller allows the user to enter the IP address, login and password of his ONVIF camera.
  Then it tests the connection by sending a `getInformations` request.
  Finally it retrieve the media profiles and the stream URI.
  */
-class ViewController: UIViewController, UITextFieldDelegate {
+class FormViewController: UIViewController, UITextFieldDelegate {
     
     // UI elements
     @IBOutlet weak var infoLabel: UILabel!

@@ -1,4 +1,4 @@
-framework module SOAPEngine64 {
+framework module SOAPEngineTV {
     umbrella header "SOAPEngine.h"
     
     export *
