@@ -10,6 +10,7 @@ With this library you are able to get the informations from a camera, the differ
 I wrote an article explaining how to use this code and how to create an ONVIF app, you can read it [here, on Hackernoon](https://hackernoon.com/live-stream-an-onvif-camera-on-your-ios-app-57fe9cead5a5).
 
 ![Screenshot](https://github.com/rvi/ONVIFCamera/blob/master/images/screenshot.png)
+![Screenshot](https://github.com/rvi/ONVIFCamera/blob/master/images/screenShotAppleTV.png)
 
 ## Example
 
@@ -23,11 +24,19 @@ To get one, ask us during the hackaton.
 
 ## Installation
 
+##iOS
+
 ONVIFCamera is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'ONVIFCamera'
+```
+
+##TVOS
+
+```ruby
+pod 'ONVIFCameraTVOS'
 ```
 
 ## Author
