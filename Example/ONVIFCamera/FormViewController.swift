@@ -67,7 +67,9 @@ class FormViewController: UIViewController, UITextFieldDelegate {
                         print("URI: \(uri ?? "No URI Provided")")
                         
                         if uri != nil {
-                        self.playButton.setTitle("Play 🎥", for: .normal)
+                            self.playButton.setTitle("Play 🎥", for: .normal)
+                        }  else {
+                            self.presentError(with: "No URI has been provided")
                         }
                     })
                 }

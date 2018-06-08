@@ -3,7 +3,7 @@
 //  ONVIFCamera
 //
 //  Created by Mohamed Arradi on 6/8/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright © 2018 Mohamed ARRADI-ALAOUI. All rights reserved.
 //
 
 import Foundation
