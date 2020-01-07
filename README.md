@@ -18,7 +18,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-To use this project on an iOS device (real device, not a simulator) you need a `SOAPEngine` licence key.
+To use this project on an iOS device (real device, not a simulator) you need a `SOAPEngine` licence key. You don't need one if you want to build and run the project on your simulator.
 You can buy one [here](https://www.prioregroup.com/iphone/soapengine.aspx) or parse the XML yourself like it has been done on [the Android project](https://github.com/rvi/ONVIFCameraAndroid).
 
 ## Installation
