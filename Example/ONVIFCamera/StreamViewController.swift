@@ -25,8 +25,7 @@ class StreamViewController: UIViewController {
         mediaPlayer.drawable = self.movieView
         
         // Create `VLCMedia` with the URI retrieved from the camera
-        if let URI = URI {
-            let url = URL(string: URI)
+        if let URI = URI ,let url = URL(string: URI) {
             let media = VLCMedia(url: url)
             mediaPlayer.media = media
         }

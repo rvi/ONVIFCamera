@@ -3,10 +3,14 @@ use_frameworks!
 target 'ONVIFCamera_Example' do
   pod 'ONVIFCamera', :path => '../'
   pod 'MobileVLCKit'
-
-  target 'ONVIFCamera_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
+    target 'ONVIFCamera_Tests' do
+    inherit! :search_paths
+  end
+
+target 'ONVICamera_TVOS_Example' do
+    pod 'ONVIFCameraTVOS', :path => '../'
+    pod 'TVVLCKit', '~> 3.0.2'
+end
+
+
