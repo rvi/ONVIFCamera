@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'ONVIFCamera_Example' do
   pod 'ONVIFCamera', :path => '../'
-  pod 'MobileVLCKit'
+  pod 'MobileVLCKit-prod'
 
   target 'ONVIFCamera_Tests' do
     inherit! :search_paths
